@@ -21,8 +21,16 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+app.get("/api/whoami", function (req, res) {
+  const localIP = req.socket.remoteAddress;
+  const prefLang = req.headers["accept-language"];
+  const localSoft = req.headers["user-agent"];
+  
+  return res.json({
+    ipaddress: localIP,
+    language: prefLang,
+    software: localSoft
+  });
 });
 
 
